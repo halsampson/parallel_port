@@ -4,6 +4,7 @@
 // See https://studenti.fisica.unifi.it/~carla/manuali/porta_parallela/porta_parallela.html
 // JTAG: https://github.com/openocd-org/openocd/blob/master/src/jtag/drivers/parPort.c 
 // https://sourceforge.net/projects/jtagomat/  Tools\JTAG\jtagomat-1.2.5\src
+// https://github.com/grandideastudio/jtagulator   auto-identify JTAG pins
 
 const int parPort = 0x378; // LPT1
 
@@ -34,11 +35,11 @@ static inline void outdw(unsigned int value, unsigned short port) { __outdword(p
 
 
 // TODO: autoconfig JTAG connection?
-//   vs. inputs/outputs need to be correct 
-//     better programmable direction by pin using an MCU
+//   Note: inputs/outputs need to be correct 
+//     better programmable direction per pin using an MCU
 // 
 // search for TDO response to TDI and TCKs
-// count combinations of inversions, ...
+// (5 pins)! = 120 combinations  * inversions
 //    binary search by toggling half of bits first, then quarter, ...
 //    ?any danger to TRST?
 // IRLen typ. 5
